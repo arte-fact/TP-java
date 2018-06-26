@@ -84,10 +84,10 @@ public class Controleur {
 			    	panneau.activeEnregistrer();
 			    	break;
 		    	case VERSION_INCONNUE :
-		    		erreur("Ouverture de dessin", "La version de ce fichier n'est pas reconnue par cette application.\nLe dessin n'a pas été chargé !");
+		    		erreur("Ouverture de dessin", "La version de ce fichier n'est pas reconnue par cette application.\nLe dessin n'a pas Ã©tÃ© chargÃ© !");
 		    		break;
 		    	case PROBLEME_PENDANT_LECTURE :
-		    		erreur("Ouverture de dessin", "Une erreur s'est produite pendant l'ouverture du dessin.\nLe dessin n'a pas été chargé !");
+		    		erreur("Ouverture de dessin", "Une erreur s'est produite pendant l'ouverture du dessin.\nLe dessin n'a pas Ã©tÃ© chargÃ© !");
 		    		break;
 		    }
 	        panneau.miseAJourTitre();
@@ -105,7 +105,7 @@ public class Controleur {
 		    	panneau.activeEnregistrer();
 		        panneau.miseAJourTitre();
 		    } else {
-		    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas été enregistré !");
+		    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas Ã©tÃ© enregistrÃ© !");
 		    }
 		}
 		return ok;
@@ -115,12 +115,12 @@ public class Controleur {
 	    if (ok) {
 	        panneau.miseAJourTitre();
 	    } else {
-	    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas été enregistré !");
+	    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas Ã©tÃ© enregistrÃ© !");
 	    }
 	    return ok;
 	}
     private boolean confirmationAvecEnregistrementEventuel(String nomOp) {
-        if (dessin.modifié()) {
+        if (dessin.modifie()) {
             switch (confirmation(nomOp)) {
 	            case CONFIRMATION_AVEC_ENREGISTREMENT :
 	            	if (dessin.enFichier()) {
