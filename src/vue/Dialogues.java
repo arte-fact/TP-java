@@ -31,8 +31,8 @@ public class Dialogues {
 	public static Confirmation confirmation(String titre) {
 		Alert dialogue = new Alert(AlertType.WARNING);
 		dialogue.setTitle(titre);
-		dialogue.setHeaderText("Cette opération fait perdre les modifications non enregistrées !");
-		dialogue.setContentText("Des modifications ont été apportées au dessin sans être enregistrées.\nQue voulez-vous faire ?");
+		dialogue.setHeaderText("Cette opÃ©ration fait perdre les modifications non enregistrÃ©es !");
+		dialogue.setContentText("Des modifications ont Ã©tÃ© apportÃ©es au dessin sans Ã©tre enregistrÃ©es.\nQue voulez-vous faire ?");
 		ButtonType btOui = new ButtonType("Enregistrer");
 		ButtonType btNon = new ButtonType("Ne pas enregistrer");
 		ButtonType btAnnuler = new ButtonType("Annuler", ButtonData.CANCEL_CLOSE);

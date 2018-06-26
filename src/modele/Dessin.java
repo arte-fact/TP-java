@@ -11,16 +11,16 @@ import java.util.List;
 
 public class Dessin implements Operable, Iterable<Figure> {
     private List<Figure> contenu;
-	private boolean modifié;
+	private boolean modifie;
 	private File fichier;
     public Dessin() {
         contenu = new LinkedList<Figure>();
         fichier = null;
-        modifié = false;
+        modifie = false;
     }
     public void ajoute(Figure f) {
         contenu.add(f);
-        modifié = true;
+        modifie = true;
     }
     public int nombreDElements() {
         return contenu.size();
@@ -33,7 +33,7 @@ public class Dessin implements Operable, Iterable<Figure> {
     }
     public void vider() {
     	contenu.clear();
-        modifié = false;
+        modifie = false;
         fichier = null;
     }
     public void realise(Operation op) {
@@ -46,7 +46,7 @@ public class Dessin implements Operable, Iterable<Figure> {
         return enregistreSous(fichier);
     }
     public boolean enregistreSous(File f) {
-    // renvoie vrai en cas de succès, faux en cas d'échec
+    // renvoie vrai en cas de succï¿½s, faux en cas d'ï¿½chec
         fichier = f;
         try {
             DataOutputStream dos;
@@ -78,7 +78,7 @@ public class Dessin implements Operable, Iterable<Figure> {
         for(Figure fig:contenu) {
             fig.enregistreDans(dos);
         }
-        modifié = false;
+        modifie = false;
     }
     private void chargeDepuis(DataInputStream dis) throws Exception {
         int nbFig = dis.readInt();
@@ -93,17 +93,17 @@ public class Dessin implements Operable, Iterable<Figure> {
             fig.chargeDepuis(dis);
             contenu.add(fig);
         }
-        modifié = false;
+        modifie = false;
     }
     public String nomDeFichier() {
-    	String nom = (modifié) ? "*" : "";
+    	String nom = (modifie) ? "*" : "";
    		nom += (fichier == null) ? "Sans nom" : fichier.getName();
     	return nom;
     }
     public boolean enFichier() {
     	return fichier != null;
     }
-    public boolean modifié() {
-    	return modifié;
+    public boolean modifie() {
+    	return modifie;
     }
 }

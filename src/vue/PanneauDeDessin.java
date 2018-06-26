@@ -58,7 +58,7 @@ public class PanneauDeDessin extends BorderPane {
 	}
 	public void outilEtoile() {
 		bM.selectionneEtoile();
-		bE.afficheOutil("étoile");
+		bE.afficheOutil("Ã©toile");
 	}
 	public void dessineTrait(double x1, double y1, double x2, double y2) {
 		zD.dessineTrait(x1, y1, x2, y2);
