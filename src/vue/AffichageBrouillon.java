@@ -11,9 +11,6 @@ import modele.Trace;
 
 public class AffichageBrouillon implements Operation {
 	private GraphicsContext gc;
-	public AffichageBrouillon(GraphicsContext context) {
-		gc = context;
-	}
 	public void opereSur(Dessin d) {
 		for(Figure f : d) f.realise(this);
 	}
