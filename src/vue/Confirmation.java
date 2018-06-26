@@ -1,0 +1,7 @@
+package vue;
+
+public enum Confirmation {
+	ABANDON,
+	CONFIRMATION_SANS_ENREGISTREMENT,
+	CONFIRMATION_AVEC_ENREGISTREMENT
+}

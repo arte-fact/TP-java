@@ -1,0 +1,2 @@
+L'écouteur clavier ne permet plus de changer d'outil
+parce que des raccourcis clavier le permettent dans la barre de menus.
