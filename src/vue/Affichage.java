@@ -3,11 +3,8 @@ package vue;
 import java.util.Iterator;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
-import modele.Dessin;
-import modele.Etoile;
-import modele.Figure;
-import modele.Operation;
-import modele.Trace;
+import modele.*;
+import modele.Chargement;
 
 public class Affichage implements Operation {
 	private GraphicsContext gc;

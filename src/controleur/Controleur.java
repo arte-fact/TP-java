@@ -11,7 +11,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.stage.FileChooser.ExtensionFilter;
+import modele.Chargement;
 import modele.Dessin;
+import modele.Enregistrement;
 import modele.OuvertureDessin;
 import vue.APropos;
 import vue.PanneauDeDessin;
@@ -21,8 +23,12 @@ public class Controleur {
 	private EcouteurSouris outil, crayon, etoile;
 	private EcouteurClavier ecouteurClavier;
 	private Dessin dessin;
+	private Enregistrement enregistrement;
+	Chargement chargement;
 	private Stage fenetre;
-	public Controleur(Dessin d, PanneauDeDessin p, Stage f) {
+	public Controleur(Chargement c, Enregistrement e, Dessin d, PanneauDeDessin p, Stage f) {
+		enregistrement = e;
+		chargement = c;
 		dessin = d;
 		panneau = p;
 		fenetre = f;
@@ -78,16 +84,16 @@ public class Controleur {
 		File fichierChoisi = dialogue.showOpenDialog(null);
 		if (fichierChoisi != null) {
 	    	dessin.vider();
-	    	OuvertureDessin result = dessin.charge(fichierChoisi);
+	    	OuvertureDessin result = chargement.charge(fichierChoisi);
 	    	switch (result) {
 		    	case REUSSIE :
 			    	panneau.activeEnregistrer();
 			    	break;
 		    	case VERSION_INCONNUE :
-		    		erreur("Ouverture de dessin", "La version de ce fichier n'est pas reconnue par cette application.\nLe dessin n'a pas �t� charg� !");
+		    		erreur("Chargement de dessin", "La version de ce fichier n'est pas reconnue par cette application.\nLe dessin n'a pas �t� charg� !");
 		    		break;
 		    	case PROBLEME_PENDANT_LECTURE :
-		    		erreur("Ouverture de dessin", "Une erreur s'est produite pendant l'ouverture du dessin.\nLe dessin n'a pas �t� charg� !");
+		    		erreur("Chargement de dessin", "Une erreur s'est produite pendant l'ouverture du dessin.\nLe dessin n'a pas �t� charg� !");
 		    		break;
 		    }
 	        panneau.miseAJourTitre();
@@ -100,7 +106,7 @@ public class Controleur {
 		dialogue.getExtensionFilters().addAll(new ExtensionFilter("Fichiers dessin de Gribouille", "*.grb"));
 		File fichierChoisi = dialogue.showSaveDialog(null);
 		if (fichierChoisi != null) {
-			ok = dessin.enregistreSous(fichierChoisi);
+			ok = enregistrement.enregistreSous(fichierChoisi);
 		    if (ok) {
 		    	panneau.activeEnregistrer();
 		        panneau.miseAJourTitre();
@@ -111,7 +117,7 @@ public class Controleur {
 		return ok;
 	}
 	public boolean enregistrer() {
-		boolean ok = dessin.enregistre();
+		boolean ok = enregistrement.enregistre(chargement);
 	    if (ok) {
 	        panneau.miseAJourTitre();
 	    } else {

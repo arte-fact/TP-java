@@ -24,7 +24,7 @@ public class BarreDeMenus extends MenuBar {
 		ajouteElement("A propos", m).setOnAction(evt -> ctrl.aPropos());
 		ajouteSeparateur(m);
 		ajouteElement("Quitter", m).setOnAction(evt -> ctrl.quitter());
-		m = ajouteMenu("Dessin");
+		m = ajouteMenu("Chargement");
 		ajouteElement("Effacer", m).setOnAction(evt -> ctrl.effacer());
 		ajouteSeparateur(m);
 		ajouteElement("Ouvrir...", m).setOnAction(evt -> ctrl.ouvrir());

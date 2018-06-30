@@ -2,6 +2,7 @@ package controleur;
 
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import modele.Chargement;
 import modele.Dessin;
 import modele.Etoile;
 import vue.PanneauDeDessin;

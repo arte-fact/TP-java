@@ -3,8 +3,10 @@ package application;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import modele.Dessin;
+import modele.Chargement;
 import controleur.Controleur;
+import modele.Dessin;
+import modele.Enregistrement;
 import vue.PanneauDeDessin;
 
 public class Gribouille extends Application {
@@ -13,9 +15,11 @@ public class Gribouille extends Application {
         Application.launch(args);
     }
     public void start(Stage stage) {
-    	Dessin d = new Dessin();
-        PanneauDeDessin pan = new PanneauDeDessin(d, stage);
-		Controleur ctrl = new Controleur(d, pan, stage);
+        Dessin d = new Dessin();
+        Chargement c = new Chargement(d);
+        Enregistrement e = new Enregistrement(d);
+        PanneauDeDessin pan = new PanneauDeDessin(c, d, stage);
+		Controleur ctrl = new Controleur(c, e, d, pan, stage);
 		pan.controleur(ctrl);
         Scene scene = new Scene(pan);
         stage.setScene(scene);
