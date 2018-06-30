@@ -6,7 +6,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import modele.ChargementV1;
 import modele.Dessin;
 
 public class PanneauDeDessin extends BorderPane {
