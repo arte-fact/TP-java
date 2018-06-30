@@ -89,10 +89,10 @@ public class Controleur {
 			    	panneau.activeEnregistrer();
 			    	break;
 		    	case VERSION_INCONNUE :
-		    		erreur("Chargement de dessin", "La version de ce fichier n'est pas reconnue par cette application.\nLe dessin n'a pas �t� charg� !");
+		    		erreur("Ouverture de dessin", "La version de ce fichier n'est pas reconnue par cette application.\nLe dessin n'a pas été chargé !");
 		    		break;
 		    	case PROBLEME_PENDANT_LECTURE :
-		    		erreur("Chargement de dessin", "Une erreur s'est produite pendant l'ouverture du dessin.\nLe dessin n'a pas �t� charg� !");
+		    		erreur("Ouverture de dessin", "Une erreur s'est produite pendant l'ouverture du dessin.\nLe dessin n'a pas été chargé !");
 		    		break;
 		    }
 	        panneau.miseAJourTitre();
@@ -110,7 +110,7 @@ public class Controleur {
 		    	panneau.activeEnregistrer();
 		        panneau.miseAJourTitre();
 		    } else {
-		    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas �t� enregistr� !");
+		    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas été enregistré !");
 		    }
 		}
 		return ok;
@@ -120,7 +120,7 @@ public class Controleur {
 	    if (ok) {
 	        panneau.miseAJourTitre();
 	    } else {
-	    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas �t� enregistr� !");
+	    	erreur("Enregistrement de dessin", "Une erreur s'est produite pendant l'enregistrement du dessin.\nLe dessin n'a pas été enregistré !");
 	    }
 	    return ok;
 	}
