@@ -4,7 +4,6 @@ import java.util.Iterator;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import modele.*;
-import modele.Chargement;
 
 public class Affichage implements Operation {
 	private GraphicsContext gc;

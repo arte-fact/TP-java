@@ -3,6 +3,7 @@ package controleur;
 import static vue.Dialogues.*;
 import java.io.File;
 
+import Factory.FabriqueEnregistrementDessin;
 import javafx.scene.Cursor;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -11,9 +12,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modele.Chargement;
+import modele.ChargementV1;
 import modele.Dessin;
-import modele.Enregistrement;
+import modele.EnregistrementV1;
 import modele.OuvertureDessin;
 import vue.APropos;
 import vue.PanneauDeDessin;
@@ -23,12 +24,8 @@ public class Controleur {
 	private EcouteurSouris outil, crayon, etoile;
 	private EcouteurClavier ecouteurClavier;
 	private Dessin dessin;
-	private Enregistrement enregistrement;
-	Chargement chargement;
 	private Stage fenetre;
-	public Controleur(Chargement c, Enregistrement e, Dessin d, PanneauDeDessin p, Stage f) {
-		enregistrement = e;
-		chargement = c;
+	public Controleur(Dessin d, PanneauDeDessin p, Stage f) {
 		dessin = d;
 		panneau = p;
 		fenetre = f;
@@ -82,9 +79,11 @@ public class Controleur {
 		FileChooser dialogue = new FileChooser();
 		dialogue.getExtensionFilters().addAll(new ExtensionFilter("Fichiers dessin de Gribouille", "*.grb"));
 		File fichierChoisi = dialogue.showOpenDialog(null);
+
+
 		if (fichierChoisi != null) {
 	    	dessin.vider();
-	    	OuvertureDessin result = chargement.charge(fichierChoisi);
+	    	OuvertureDessin result = dessin.charge(fichierChoisi);
 	    	switch (result) {
 		    	case REUSSIE :
 			    	panneau.activeEnregistrer();
@@ -106,7 +105,7 @@ public class Controleur {
 		dialogue.getExtensionFilters().addAll(new ExtensionFilter("Fichiers dessin de Gribouille", "*.grb"));
 		File fichierChoisi = dialogue.showSaveDialog(null);
 		if (fichierChoisi != null) {
-			ok = enregistrement.enregistreSous(fichierChoisi);
+			ok = dessin.enregistre(fichierChoisi);
 		    if (ok) {
 		    	panneau.activeEnregistrer();
 		        panneau.miseAJourTitre();
@@ -117,7 +116,7 @@ public class Controleur {
 		return ok;
 	}
 	public boolean enregistrer() {
-		boolean ok = enregistrement.enregistre(chargement);
+		boolean ok = dessin.enregistre(dessin.getFichier());
 	    if (ok) {
 	        panneau.miseAJourTitre();
 	    } else {

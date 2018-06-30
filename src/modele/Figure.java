@@ -10,14 +10,14 @@ import javafx.scene.paint.Color;
 
 public abstract class Figure implements Operable, Iterable<Point2D> {
     protected Color couleur;
-    protected int epaisseur;
-    protected List<Point2D> contenu;
-    public Figure() {
+    int epaisseur;
+    List<Point2D> contenu;
+    Figure() {
         couleur = Color.BLACK;
         epaisseur = 1;
     	contenu = new LinkedList<Point2D>();
     }
-    public Figure(Color couleur, int epaisseur) {
+    Figure(Color couleur, int epaisseur) {
         this.couleur = couleur;
         this.epaisseur = epaisseur;
         contenu = new LinkedList<Point2D>();

@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import modele.Chargement;
+import modele.ChargementV1;
 import modele.Dessin;
 
 public class PanneauDeDessin extends BorderPane {
@@ -14,12 +14,10 @@ public class PanneauDeDessin extends BorderPane {
 	private BarreDEtat bE;
 	private BarreDeMenus bM;
 	private Dessin dessin;
-	private  Chargement chargement;
 	private Stage fenetre;
-	public PanneauDeDessin(Chargement c, Dessin d, Stage s) {
+	public PanneauDeDessin(Dessin d, Stage s) {
 		super();
 		dessin = d;
-		chargement = c;
 		fenetre = s;
 		bM = new BarreDeMenus();
 		setTop(bM);
@@ -76,6 +74,6 @@ public class PanneauDeDessin extends BorderPane {
 		bM.activeEnregistrer();
 	}
 	public void miseAJourTitre() {
-		fenetre.setTitle(chargement.nomDeFichier() + Gribouille.FIN_NOM);
+		fenetre.setTitle(dessin.nomDeFichier() + Gribouille.FIN_NOM);
 	}
 }

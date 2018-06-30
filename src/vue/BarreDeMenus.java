@@ -13,18 +13,18 @@ import javafx.scene.paint.Color;
 
 public class BarreDeMenus extends MenuBar {
 	private Controleur ctrl;
-	MenuItem optionEnregistrer;
+	private MenuItem optionEnregistrer;
 	private RadioMenuItem choixCrayon, choixEtoile;
-	public void controleur(Controleur c) {
+	void controleur(Controleur c) {
 		ctrl = c;
 	}
-	public BarreDeMenus() {
+	BarreDeMenus() {
 		super();
 		Menu m = ajouteMenu("Gribouille");
 		ajouteElement("A propos", m).setOnAction(evt -> ctrl.aPropos());
 		ajouteSeparateur(m);
 		ajouteElement("Quitter", m).setOnAction(evt -> ctrl.quitter());
-		m = ajouteMenu("Chargement");
+		m = ajouteMenu("Dessin");
 		ajouteElement("Effacer", m).setOnAction(evt -> ctrl.effacer());
 		ajouteSeparateur(m);
 		ajouteElement("Ouvrir...", m).setOnAction(evt -> ctrl.ouvrir());
@@ -81,13 +81,13 @@ public class BarreDeMenus extends MenuBar {
 		SeparatorMenuItem s = new SeparatorMenuItem();
 		m.getItems().add(s);
 	}
-	public void selectionneCrayon() {
+	void selectionneCrayon() {
 		choixCrayon.setSelected(true);
 	}
-	public void selectionneEtoile() {
+	void selectionneEtoile() {
 		choixEtoile.setSelected(true);
 	}
-	public void activeEnregistrer() {
+	void activeEnregistrer() {
 		optionEnregistrer.setDisable(false);
 	}
 	public void desactiveEnregistrer() {
