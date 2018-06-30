@@ -1,7 +1,7 @@
 package modele;
 
-import Factory.FabriqueChargementDessin;
-import Factory.FabriqueEnregistrementDessin;
+import fabrique.FabriqueChargementDessin;
+import fabrique.FabriqueEnregistrementDessin;
 
 import java.io.DataInputStream;
 import java.io.File;

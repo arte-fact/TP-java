@@ -1,6 +1,5 @@
-package Factory;
+package fabrique;
 
-import modele.Dessin;
 import modele.EnregistrementV1;
 import modele.EnregistrementV2;
 

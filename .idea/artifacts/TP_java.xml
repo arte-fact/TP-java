@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="TP-java">
+    <output-path>$PROJECT_DIR$/out/artifacts/TP_java</output-path>
+    <root id="root">
+      <element id="archive" name="TP_java.jar">
+        <element id="module-output" name="TP-java" />
+      </element>
+    </root>
+  </artifact>
+</component>

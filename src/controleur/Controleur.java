@@ -1,23 +1,23 @@
 package controleur;
 
-import static vue.Dialogues.*;
-import java.io.File;
-
-import Factory.FabriqueEnregistrementDessin;
 import javafx.scene.Cursor;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.stage.FileChooser.ExtensionFilter;
-import modele.ChargementV1;
 import modele.Dessin;
-import modele.EnregistrementV1;
 import modele.OuvertureDessin;
+import outils.JDOM;
 import vue.APropos;
 import vue.PanneauDeDessin;
+
+import java.io.File;
+
+import static vue.Dialogues.confirmation;
+import static vue.Dialogues.erreur;
 
 public class Controleur {
 	private PanneauDeDessin panneau;
@@ -25,6 +25,8 @@ public class Controleur {
 	private EcouteurClavier ecouteurClavier;
 	private Dessin dessin;
 	private Stage fenetre;
+	private JDOM jdom;
+
 	public Controleur(Dessin d, PanneauDeDessin p, Stage f) {
 		dessin = d;
 		panneau = p;
@@ -37,16 +39,45 @@ public class Controleur {
 		panneau.zoneDeDessin().setOnMouseMoved((MouseEvent evt) -> outil.onMouseMoved(evt));
 		panneau.zoneDeDessin().setOnMousePressed((MouseEvent evt) -> outil.onMousePressed(evt));
 		panneau.zoneDeDessin().setOnMouseDragged((MouseEvent evt) -> outil.onMouseDragged(evt));
-        panneau.zoneDeDessin().setOnMouseEntered((MouseEvent evt) -> fenetre.getScene().setCursor(Cursor.HAND));
-        panneau.zoneDeDessin().setOnMouseExited((MouseEvent evt) -> fenetre.getScene().setCursor(Cursor.DEFAULT));
-        fenetre.setOnCloseRequest((WindowEvent evt) -> onClose(evt));
+		panneau.zoneDeDessin().setOnMouseEntered((MouseEvent evt) -> fenetre.getScene().setCursor(Cursor.HAND));
+		panneau.zoneDeDessin().setOnMouseExited((MouseEvent evt) -> fenetre.getScene().setCursor(Cursor.DEFAULT));
+		fenetre.setOnCloseRequest((WindowEvent evt) -> onClose(evt));
 		panneau.afficheCoordonnees(0, 0);
 		outilCrayon();
-		panneau.changeCouleur(Color.BLACK, "noir");
-		panneau.changeEpaisseur(1);
-		panneau.miseAJourTitre();
+
+		try {
+			jdom = JDOM.getInstance();
+			chargeParametres();
+		} catch (Exception e) {
+			panneau.changeCouleur(Color.BLACK, "noir");
+			panneau.changeEpaisseur(1);
+			panneau.miseAJourTitre();
+		}
 	}
-	public void aPropos() {
+
+    public void chargeParametres() {
+
+        String outil = jdom.getValue("outil");
+        String couleur = jdom.getValue("couleur");
+        String epaisseur = jdom.getValue("epaisseur");
+
+		switch (outil) {
+			case "Crayon": panneau.outilCrayon();
+			case "Etoile": panneau.outilEtoile();
+		}
+
+		switch (couleur) {
+			case "noir": panneau.changeCouleur(Color.BLACK, couleur);
+			case "rouge": panneau.changeCouleur(Color.RED, couleur);
+			case "bleu": panneau.changeCouleur(Color.BLUE, couleur);
+			case "jaune": panneau.changeCouleur(Color.YELLOW, couleur);
+			case "vert": panneau.changeCouleur(Color.GREEN, couleur);
+		}
+
+		panneau.changeEpaisseur(Integer.parseInt(epaisseur));
+    }
+
+    public void aPropos() {
 		APropos.unAPropos().show();
 	}
 	public void outilCrayon() {

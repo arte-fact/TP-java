@@ -13,7 +13,6 @@ public class EnregistrementV2 {
         return enregistreSous(dessin);
     }
     public boolean enregistreSous(Dessin dessin) {
-    // renvoie vrai en cas de succ�s, faux en cas d'�chec
         try {
             DataOutputStream dos;
             dos = new DataOutputStream(new FileOutputStream(dessin.getFichier()));

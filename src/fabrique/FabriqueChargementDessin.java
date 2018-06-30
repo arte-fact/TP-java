@@ -1,4 +1,4 @@
-package Factory;
+package fabrique;
 
 import modele.ChargementV1;
 import modele.ChargementV2;
